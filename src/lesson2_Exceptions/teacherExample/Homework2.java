@@ -54,7 +54,7 @@ public class Homework2 {
                 String value = row[colIndex];
                 try {
                     sumResult += Integer.parseInt(value);
-//                    sumResult += sumResult + Integer.parseInt(value);
+//                    sumResult = sumResult + Integer.parseInt(value);
                 } catch (NumberFormatException e) {
                     throw new MyArrayDataException(value, rowIndex, colIndex);
                 }
