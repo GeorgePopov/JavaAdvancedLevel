@@ -1,4 +1,4 @@
-package lesson2_Exceptions.teacherExample;
+package lesson2_exceptions.teacherExample;
 
 public class Homework2 {
     private static final int REQUIRED_ARRAY_SIZE = 4;

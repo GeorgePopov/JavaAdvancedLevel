@@ -1,4 +1,4 @@
-package lesson5_Multithreading.synchronize;
+package lesson5_multithreading.synchronize;
 
 public class Example_SB_2 {
 

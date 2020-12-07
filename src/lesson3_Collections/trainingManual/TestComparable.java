@@ -1,4 +1,4 @@
-package lesson3_Collections.trainingManual;
+package lesson3_collections.trainingManual;
 
 import java.util.ArrayList;
 import java.util.Arrays;

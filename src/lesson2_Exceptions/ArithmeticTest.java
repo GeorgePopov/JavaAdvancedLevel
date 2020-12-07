@@ -1,4 +1,4 @@
-package lesson2_Exceptions;
+package lesson2_exceptions;
 
 /**
  * Exception нужно выставлять по убыванию от наследников к более старшим классам

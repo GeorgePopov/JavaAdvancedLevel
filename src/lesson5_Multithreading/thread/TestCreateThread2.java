@@ -1,4 +1,4 @@
-package lesson5_Multithreading.thread;
+package lesson5_multithreading.thread;
 
 /**
  * Наиболее редко используемый вариант создания нового потока путём наследования от класса Thread.

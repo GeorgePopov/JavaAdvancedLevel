@@ -1,4 +1,4 @@
-package lesson3_Collections;
+package lesson3_collections;
 
 public class Person implements Comparable<Person> {
     private String name;

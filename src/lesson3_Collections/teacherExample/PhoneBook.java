@@ -1,4 +1,4 @@
-package lesson3_Collections.teacherExample;
+package lesson3_collections.teacherExample;
 
 import java.util.HashSet;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package lesson3_Collections;
+package lesson3_collections;
 
 import java.util.Collections;
 import java.util.LinkedList;

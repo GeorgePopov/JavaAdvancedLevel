@@ -1,4 +1,4 @@
-package lesson5_Multithreading.thread;
+package lesson5_multithreading.thread;
 
 /**
  * Атомарная операция — операция, которая либо выполняется целиком, либо не выполняется вовсе;
