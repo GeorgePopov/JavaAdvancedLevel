@@ -1,4 +1,4 @@
-package lesson5_Multithreading.thread;
+package lesson5_multithreading.thread;
 
 public class ThreadJoin {
     static class MyRunnableClass4 implements Runnable {

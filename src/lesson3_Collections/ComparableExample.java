@@ -1,4 +1,4 @@
-package lesson3_Collections;
+package lesson3_collections;
 
 import java.util.Comparator;
 import java.util.Set;

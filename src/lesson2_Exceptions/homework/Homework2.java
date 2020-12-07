@@ -1,4 +1,4 @@
-package lesson2_Exceptions.homework;
+package lesson2_exceptions.homework;
 
 import java.util.Arrays;
 

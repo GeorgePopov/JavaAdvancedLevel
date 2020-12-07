@@ -1,4 +1,4 @@
-package lesson2_Exceptions;
+package lesson2_exceptions;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

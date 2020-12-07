@@ -1,4 +1,4 @@
-package lesson2_Exceptions.homework;
+package lesson2_exceptions.homework;
 
 public class MyArraySizeException extends NegativeArraySizeException {
 

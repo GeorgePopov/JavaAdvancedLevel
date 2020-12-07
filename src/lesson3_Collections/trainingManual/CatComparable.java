@@ -1,4 +1,4 @@
-package lesson3_Collections.trainingManual;
+package lesson3_collections.trainingManual;
 
 public class CatComparable implements Comparable {
 

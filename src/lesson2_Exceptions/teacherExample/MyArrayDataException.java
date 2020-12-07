@@ -1,4 +1,4 @@
-package lesson2_Exceptions.teacherExample;
+package lesson2_exceptions.teacherExample;
 
 public class MyArrayDataException extends RuntimeException {
 

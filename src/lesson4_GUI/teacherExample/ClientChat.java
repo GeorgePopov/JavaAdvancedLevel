@@ -55,7 +55,7 @@ public class ClientChat {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setContentPane(new ClientChat().mainPanel);
-        frame.setTitle("Test Window");
+        frame.setTitle("MyPractice Window");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(640, 480);
         frame.setLocationRelativeTo(null); // окно будет открываться по середине экрана

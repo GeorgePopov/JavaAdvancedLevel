@@ -1,4 +1,4 @@
-package lesson5_Multithreading.synchronize;
+package lesson5_multithreading.synchronize;
 
 /**
  * Здесь блокировка по классу, т.е. по методу он статический, принадлежит классу

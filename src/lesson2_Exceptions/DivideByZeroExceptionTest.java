@@ -1,4 +1,4 @@
-package lesson2_Exceptions;
+package lesson2_exceptions;
 
 public class DivideByZeroExceptionTest {
     public static void main(String[] args) {
