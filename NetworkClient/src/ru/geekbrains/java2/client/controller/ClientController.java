@@ -29,9 +29,12 @@ public class ClientController {
     }
 
     private void runAuthProcess() {
-        networkService.setSuccessfulAuthEvent(nickname -> {
-            ClientController.this.setUserName(nickname);
-            ClientController.this.openChat();
+        networkService.setSuccessfulAuthEvent(new AuthEvent() {
+            @Override
+            public void authIsSuccessful(String nickname) {
+                ClientController.this.setUserName(nickname);
+                ClientController.this.openChat();
+            }
         });
         authDialog.setVisible(true);
     }
@@ -49,8 +52,11 @@ public class ClientController {
     }
 
     private void setUserName(String nickname) { // запоминаем nickname
-        SwingUtilities.invokeLater(() -> {
-            clientChat.setTitle(nickname);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                clientChat.setTitle(nickname);
+            }
         });
         this.nickname = nickname;
     }

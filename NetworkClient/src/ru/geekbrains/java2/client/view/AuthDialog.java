@@ -23,21 +23,21 @@ public class AuthDialog extends JFrame {
     public AuthDialog(ClientController controller) {
         this.controller = controller;
         setContentPane(contentPane);
-        getRootPane().setDefaultButton(buttonOK); // задаём default кнопку
+        getRootPane().setDefaultButton(buttonOK); // задаём default кнопку для этой корневой панели
         setSize(400, 250);
         setLocationRelativeTo(null);
 
         buttonOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AuthDialog.this.onOk();
+                AuthDialog.this.onOk(); // так можно обращаться к методу этого же класса
             }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AuthDialog.this.onCancel();
+                AuthDialog.this.onCancel(); // почему бы просто не вызвать метод?
             }
         });
 

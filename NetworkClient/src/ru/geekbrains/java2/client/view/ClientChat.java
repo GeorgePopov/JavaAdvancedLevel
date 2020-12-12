@@ -3,6 +3,8 @@ package ru.geekbrains.java2.client.view;
 import ru.geekbrains.java2.client.controller.ClientController;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -33,8 +35,19 @@ public class ClientChat extends JFrame {
     }
 
     private void addListeners() {
-        sendButton.addActionListener(e -> ClientChat.this.sendMessage());
-        messageTextField.addActionListener(e -> sendMessage());
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClientChat.this.sendMessage();
+            }
+        });
+
+        messageTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClientChat.this.sendMessage();
+            }
+        });
     }
 
     private void sendMessage() {
@@ -50,9 +63,12 @@ public class ClientChat extends JFrame {
 
     // данный метод в обёртке SwingUtilities.invokeLater() добавляет сообщения которые нам пришли в окно чата
     public void appendMessage(String message) {
-        SwingUtilities.invokeLater(() -> {
-            chatText.append(message);
-            chatText.append(System.lineSeparator()); // перенос на новую строку
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                chatText.append(message);
+                chatText.append(System.lineSeparator()); // перенос на новую строку
+            }
         });
     }
 

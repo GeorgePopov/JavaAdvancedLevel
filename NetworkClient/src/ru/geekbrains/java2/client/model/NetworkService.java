@@ -71,8 +71,8 @@ public class NetworkService {
     public void setMessageHandler(Consumer<String> messageHandler) {
         this.messageHandler = messageHandler;
     }
-    // сетим здесь объект который реализует интерфейс AuthEvent и метод с успешно пройденной аутентификацией
 
+    // сетим здесь объект который реализует интерфейс AuthEvent и метод с успешно пройденной аутентификацией
     public void setSuccessfulAuthEvent(AuthEvent successfulAuthEvent) {
         this.successfulAuthEvent = successfulAuthEvent;
     }
