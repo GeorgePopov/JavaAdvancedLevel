@@ -63,4 +63,8 @@ public class AuthDialog extends JFrame {
     private void onCancel() { // закрываем клиентское приложение
         System.exit(0);
     }
+
+    public void showError(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
+    }
 }
