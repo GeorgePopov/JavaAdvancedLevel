@@ -1,5 +1,6 @@
 package ru.geekbrains.java2.server.networkserver;
 
+import ru.geekbrains.java2.clent.server.Command;
 import ru.geekbrains.java2.server.networkserver.auth.AuthService;
 import ru.geekbrains.java2.server.networkserver.auth.BaseAuthService;
 import ru.geekbrains.java2.server.networkserver.clienthandler.ClientHandler;
@@ -25,16 +26,16 @@ public class MyServer {
     }
 
     public void start() {
-        try (ServerSocket serverSocket = new ServerSocket(port)) { // создаём socket
+        try (ServerSocket serverSocket = new ServerSocket(port)) { // создаём socket, когда он есть значит можем работать
             System.out.println("Server is running");
-            authService.start();
+            authService.start(); // здесь должен происхотить переход на БД
 
             //noinspection InfiniteLoopStatement
-            while (true) {
+            while (true) { // основная логика сервера
                 System.out.println("Waiting for client connection...");
-                Socket clientSocket = serverSocket.accept(); // дожидаемся подключения
+                Socket clientSocket = serverSocket.accept(); // ожидаем нового подключения от клиента
                 System.out.println("Client has been connected");
-                ClientHandler handler = new ClientHandler(clientSocket, this); // создаём обработчик
+                ClientHandler handler = new ClientHandler(clientSocket, this); // создаём обработчик на каждого кл-та
                 try {
                     handler.handle(); // вызываем обрабатыватель
                 } catch (IOException e) {
@@ -46,7 +47,7 @@ public class MyServer {
             System.err.println(e.getMessage());
             e.printStackTrace();
         } finally {
-            authService.stop();
+            authService.stop(); // отключаем БД после оконсания работы сервера
         }
     }
 
@@ -66,17 +67,45 @@ public class MyServer {
     // чтобы методы broadcastMessage, subscribe и unsubscribe не работали
     // одновременно с коллекцией clients, помечаем их как synchronized
     // в противном случае это может привести к ConcurrentModificationException
-    public synchronized void broadcastMessage(String message) throws IOException {
+    public synchronized void broadcastMessage(Command command) throws IOException {
         for (ClientHandler client : clients) {
-            client.sendMessage(message);
+            client.sendMessage(command);
         }
     }
 
-    public synchronized void subscribe(ClientHandler clientHandler) {
+    public synchronized void subscribe(ClientHandler clientHandler) throws IOException {
         clients.add(clientHandler);
+        List<String> users = getAllUsernames();
+        broadcastMessage(Command.updateUsersListCommand(users)); // делаем массовую рассылку обновлённого списка подкл-ний
     }
 
-    public synchronized void unsubscribe(ClientHandler clientHandler) {
+    public synchronized void unsubscribe(ClientHandler clientHandler) throws IOException {
         clients.remove(clientHandler);
+        List<String> users = getAllUsernames();
+        broadcastMessage(Command.updateUsersListCommand(users));
+    }
+
+    private List<String> getAllUsernames() {
+        // !*!*! Реализация с помощью 'IPI'?. Преобразовыаем все элементы данной колекции с
+        // помощью метода 'референс' т.е. берём у каждой коллекции getNickname() и это и будет
+        // считаться заменой каждого элемента и потом всё что получилась собираем в обычный лист
+        /*return clients.stream()*/
+//                .map(client -> client.getNickname())
+//                .map(ClientHandler::getNickname) // метод референс заменяет лямбда выражение
+//                .collect(Collectors.toList());
+        List<String> result = new ArrayList<>();
+        for (ClientHandler client : clients) {
+            result.add(client.getNickname());
+        }
+        return result;
+    }
+
+    public synchronized void sendPrivateMessage(String receiver, Command command) throws IOException {
+        for (ClientHandler client : clients) {
+            if (client.getNickname().equals(receiver)) {
+                client.sendMessage(command);
+                return;
+            }
+        }
     }
 }
