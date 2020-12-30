@@ -67,8 +67,6 @@ public class ArrayListExample {
         newDataName.sort(Comparator.naturalOrder()); // отсартирует в порядке возрастания
         newDataName.sort(Comparator.reverseOrder()); // отсартирует в порядке убывания
         System.out.println(newDataName);
-
-
     }
 
     private static void arrayListToArray() {
